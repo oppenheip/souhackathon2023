@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shake Up Shakespeare!</title>
+  </head>
+  <body>
+
+    <h1>Romeo and Juliet</h1>
+  <img src="https://www.priscilla.com/Art/00_RandJ.png" style="width:35%">
+    <p> 
+What will our characters say? Will they fall in love? Will they die? 
+<br>
+Will they repeat themselves? Will they forget which play they are in? :-)
+<br>
+
+~~~~~~~
+
+<br>
+
+    <div id="output"></div>
+    <button onclick="generatePairs()">Generate Dialog</button>
+
+    <script>
+      const words = [
+        "ROMEO: ",
+        "JULIET: ",
+        "LADY CAPULET: ",
+        "CAPULET: ",
+        "LADY MONTAGUE: ",
+        "MONTAGUE: ",
+        "FRIAR LAURENCE: ",
+        "NURSE: ",
+        "TYBALT: ",
+        "PRINCE: ",
+        "BENVOLIO: ",
+        "MERCUTIO: ",
+      ];
+
+      const sentences = [
+        "Two households, both alike in dignity. In fair Verona, where we lay our scene.",
+        "Anon!",
+        "What's here? A cup, closed in my true love's hand? Poison, I see, hath been his timeless end.",
+        "O churl! Drunk all, and left no friendly drop to help me after? I will kiss thy lips; haply some poison yet doth hang on them.",
+        "Ancient damnation! O most wicked fiend!",
+        "Wilt thou be gone? It is not yet near day. It was the nightingale, and not the lark that pierced the fearful hollow of thine ear.",
+        "It was the lark, the herald of the morn, no nightingale.",
+        "Yea, noise? Then I'll be brief. O happy dagger! This is thy sheath. There rust, and let me die.",
+        "The ground is bloody; search about the churchyard.",
+        "Search, seek, and know how this foul murder comes.",
+        "Thus with a kiss I die.",
+        "My only love sprung from my only hate. Too early seen unknown, and known too late!",
+        "Prodigious birth of love is it to me that I must love a loathed enemy.",
+        "Love is a smoke raised with the fume of sighs. What is it else? A madness most discreet, a choking gall, and a preserving sweet.",
+        "Arise, fair sun, and kill the envious moon who is already sick and pale with grief that thou, her maid, art far more fair than she.",
+        "See how she leans her cheek upon her hand. O that I were a glove upon that hand that I might touch that cheek!",
+        "Love is a smoke made with the fume of sighs.",
+        "My bounty is as boundless as the sea, my love as deep.",
+        "Benedicite! What early tongue so sweet saluteth me?", 
+        "Ay, while you live, draw your neck out o' the collar.",
+        "Holy Saint Francis, what a change is here! Is Rosaline, whom thou didst love so dear, so soon forsaken?", 
+        "A dog of the house of Montague moves me.",
+        "Draw thy tool! Here comes two of the house of the Montagues.",
+        "Is love a tender thing? It is too rough, too rude, too boisterous, and it pricks like thorn.", 
+        "Welcome, gentlemen! Ladies that have their toes unplagued with corns will have a bout with you.",
+        "This bud of love, by summer's ripening breath, may prove a beauteous flower when next we meet.",
+        "Draw thy tool. My naked weapon is out.",
+        "I do bite my thumb, sir.",
+        "What, ho! you men, you beasts.",
+        "Alas, that love, so gentle in his view, should be so tyrannous and rough in proof!",
+        "A pair of star-crossed lovers take their life.",
+        "Therefore love moderately; long love doth so.",         
+        "Good night, good night! Parting is such sweet sorrow.",
+        "For never was a story of more woe than this of Juliet and her Romeo.",
+        "What's in a name? That which we call a rose by any other name would smell as sweet.",
+        "Do you bite your thumb at us, sir?",
+        "You kiss by the book.",
+        "O, swear not by the moon, the inconstant moon.",
+        "But soft, what light through yonder window breaks?",
+        "It is the east, and Juliet is the sun.",
+        "O Romeo, Romeo, wherefore art thou Romeo?",
+        "Deny thy father and refuse thy name, and I'll no longer be a Capulet.",
+        "Thou art thyself, though not a Montague.",
+        "A villain that is hither come in spite, 'tis he, that villain Romeo.",
+        "Thou, wretched boy, that didst consort him here, shalt with him hence.",
+        "Nay, gentle Romeo, we must have you dance.",
+        "Ask for me tomorrow, and you shall find me a grave man.",
+        "I am a pretty piece of flesh!",
+        "Tis well thou art not fish; if thou hadst, thou hadst been poor John.",
+        "Thou wast the prettiest babe that e'er I nursed.",
+        "What noise is this? Give me my long sword, ho!",
+        "A crutch, a crutch! Why call you for a sword?",
+        "O, where is Romeo? Saw you him today? Right glad I am he was not at this fray.",
+        "Come, gentle night, come, loving black-browed night.",
+        "Thou shalt not stir a foot to seek a foe.",
+        "Alas, my liege, my wife is dead tonight. Grief of my son's exile hath stopped her breath.",
+        "Now by my maidenhead at twelve year old, I bade her come.",
+        "Oh, that she were an open arse, and thou a poperin pear.",
+        "Yea, quoth he, dost thou fall upon thy face?",
+        "To be or not to be. That is the question.",
+        "Friends, Romans, countrymen, lend me your ears.",
+        "All the world's a stage, and all the men and women merely players.",
+        "A horse! A horse. My kingdom for a horse.",
+        "We are such stuff as dreams are made on.",
+        "The course of true love never did run smooth.",
+        "Nay, as they dare. I will bite my thumb at them.",
+        "If music be the food of love, play on.",
+        "Once more unto the breach, dear friends, once more.",
+        "To thine own self be true.",
+        "A crutch, a crutch! Why call you for a horse?",
+        "Nay, gentle Titania, we must have you dance.",
+        "Would thou wert clean enough to spit upon!",
+        "You Banbury cheese! I am sick when I do look on thee.",
+        "Virginity breeds mites, much like a cheese.",
+        "I am sick when I do look on thee.",
+        "Away thou rag, thou quantity, thou remnant.",
+        "I do desire we may be better strangers.",
+        "You are not worth another word, else I'd call you knave.",
+        "Thou lilly-livered boy.",
+        "Thou art a boil, a plague sore, an embossed carbuncle.",
+        "Away, you scullion! You rampallian! You fustilarian.",
+        "A glooming peace this morning with it brings; The sun, for sorrow, will not show his head.",
+        "Some shall be pardoned, and some punished.",
+        "A plague on both your houses!", 
+        "'Zounds, a dog, a rat, a mouse, a cat, to scratch a man to death!",
+        "A braggart, a rogue, a villain, that fights by the book of arithmetic!", 
+        "Why the devil came you between us?", 
+
+
+        "To code or not to code, that is the question.",
+      ];
+
+      const output = document.getElementById("output");
+
+      function generatePairs() {
+        output.innerHTML = ""; // clear previous pairs
+        for (let i = 0; i < 8; i++) {
+          const randomWordIndex = Math.floor(Math.random() * words.length);
+          const randomSentenceIndex = Math.floor(Math.random() * sentences.length);
+          const word = words[randomWordIndex];
+          const sentence = sentences[randomSentenceIndex];
+          const pairElement = document.createElement("p");
+          pairElement.innerText = `${word} ${sentence}`;
+          output.appendChild(pairElement);
+        }
+      }
+    </script>
+
+
+<p>
+~~~~~~~
+<p>
+<a href="https://www.priscilla.com/shake.html">Home</a> | <a href="https://www.priscilla.com/ShakespeareActivities.html">Activities</a> | <a href="https://www.priscilla.com/ShakespeareAbout.html">About</a>  
+
+
+  </body>
+</html>

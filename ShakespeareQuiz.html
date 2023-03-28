@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>R and J Quiz</title>
+</head>
+<body>
+
+
+
+  <h2>How Well Do You Know Your Romeo and Juliet?</h2>
+
+  <img src="https://www.priscilla.com/Art/DALL-E_Verona.png">
+
+<p>
+
+<h3>Answer a randomly-chosen question.</h3>
+  <div>
+    <p id="question"></p>
+    <div id="choices"></div>
+  </div>
+  <br>
+  <button id="next-button">Next</button>
+
+  <script>
+    // Define an array of multiple-choice questions with their answers
+    const questions = [
+      {
+        question: "Romeo loves _______ best.",
+        choices: ["His mom", "Rosaline", "Juliet", "Himself"],
+        answer: "Juliet"
+      },
+
+      {
+        question: "Who says the line in the play, 'Parting is such sweet sorrow.'?",
+        choices: ["Romeo", "Rosaline", "Juliet", "Nurse"],
+        answer: "Juliet"
+      },
+
+      {
+        question: "Who says the line in the play, 'Nay, as they dare. I will bite my thumb at them.'?",
+        choices: ["Romeo", "Abraham", "Tybalt", "Sampson"],
+        answer: "Sampson"
+      },
+
+      {
+        question: "Where does Romeo and Juliet take place?",
+        choices: ["Paris", "Rome", "London", "None of these"],
+        answer: "None of these"
+      },
+
+      {
+        question: "Why does Romeo agree to go to the Capulet's party?",
+        choices: ["To see Rosaline", "He loves to dance", "He can't wait to meet Juliet", "He wants to fight Tybalt"],
+        answer: "To see Rosaline"
+      },
+
+      {
+        question: "What does Juliet mean when she says, 'Wherefore art thou Romeo?'",
+        choices: ["Where are you, Romeo?", "When can I see you, Romeo?", "Who is Romeo?", "Why are you 'Romeo'?"],
+        answer: "Why are you 'Romeo'?"
+      },
+
+      {
+        question: "How long had Romeo and Juliet known each other when they decided to get married?",
+        choices: ["Less than 24 hours", "A few days", "A few months", "A few years"],
+        answer: "Less than 24 hours"
+      },
+
+      {
+        question: "Where does Romeo go to hide after he kills Tybalt?",
+        choices: ["Juliet's house", "Mantua", "Friar Laurence's cell", "Romeo didn't kill Tybalt"],
+        answer: "Friar Laurence's cell"
+      },
+
+      {
+        question: "Who killed Tybalt?",
+        choices: ["Juliet", "Mercutio", "Friar Laurence", "Romeo"],
+        answer: "Romeo"
+      },
+
+      {
+        question: "What had happened to Mercutio right before he says, 'A plague on both your houses.'",
+        choices: ["He had been stabbed", "He had been poisoned", "He had been banished", "He had found out about the wedding"],
+        answer: "He had been stabbed"
+      },
+
+      {
+        question: "Who killed Mercutio?",
+        choices: ["Capulet", "Tybalt", "Friar Laurence", "Romeo"],
+        answer: "Tybalt"
+      },
+
+      {
+        question: "What does Nurse advise Juliet to do?",
+        choices: ["Run away", "Get to a nunnery", "Kill her father", "Marry Paris"],
+        answer: "Marry Paris"
+      },
+
+      {
+        question: "How did Juliet die?",
+        choices: ["She poisoned herself", "She stabbed herself", "Romeo killed her", "Her father killed her"],
+        answer: "She stabbed herself"
+      },
+
+      {
+        question: "Why does the Friar agree to marry Romeo and Juliet?",
+        choices: ["To stop an out-of-wedlock pregnancy", "To make money", "To stop the feud between the Montagues and the Capulets", "To make himself look good to the Prince"],
+        answer: "To stop the feud between the Montagues and the Capulets"
+      },
+
+    ];
+
+    // Define variables to store the current question and answer
+    let currentQuestion = null;
+    let currentAnswer = null;
+
+    // Function to randomly choose a question and display it
+    function displayRandomQuestion() {
+      // Choose a random question from the array
+      const index = Math.floor(Math.random() * questions.length);
+      currentQuestion = questions[index].question;
+      currentAnswer = questions[index].answer;
+
+      // Display the question and choices to the user
+      const questionElement = document.getElementById("question");
+      questionElement.textContent = currentQuestion;
+
+      const choicesElement = document.getElementById("choices");
+      choicesElement.innerHTML = "";
+      questions[index].choices.forEach(function(choice) {
+        const choiceElement = document.createElement("button");
+        choiceElement.textContent = choice;
+        choiceElement.addEventListener("click", function() {
+          // Check if the user's choice matches the correct answer
+          if (choice === currentAnswer) {
+            alert("Correct!");
+          } else {
+            alert("Incorrect.");
+          }
+        });
+        choicesElement.appendChild(choiceElement);
+      });
+    }
+
+    // Attach event listener to the "Next" button
+    const nextButton = document.getElementById("next-button");
+    nextButton.addEventListener("click", displayRandomQuestion);
+
+    // Display the first question
+    displayRandomQuestion();
+  </script>
+<p>
+~~~~~~~
+<p>
+<a href="https://www.priscilla.com/shake.html">Home</a> | <a href="https://www.priscilla.com/ShakespeareActivities.html">Activities</a> | <a href="https://www.priscilla.com/ShakespeareAbout.html">About</a>
+</body>
+</html>
